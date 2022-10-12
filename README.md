@@ -65,9 +65,6 @@ The following policies are meant to guide collaborators in their activities, est
           <img src="https://github.com/bgonilho.png" width="100px;" style="border-radius:100%"/>
           <br /><sub><b>bgonilho</b></sub><br />
         </a>
-        <a href="mailto: bernardomiguel0@gmail.com" title="Mail">
-        <img src="https://cdn.jsdelivr.net/gh/dmhendricks/signature-social-icons/icons/round-flat-filled/50px/mail.png" width="20" style="margin-top:10px"/>
-        </a>
         <a href="https://www.linkedin.com/in/bernardogonilho/" title="LinkedIn">
         <img src="https://cdn.jsdelivr.net/gh/dmhendricks/signature-social-icons/icons/round-flat-filled/50px/linkedin.png" width="20" style="margin-top:10px"/>
         </a>
@@ -80,9 +77,6 @@ The following policies are meant to guide collaborators in their activities, est
           <img src="https://github.com/luisferreira32.png" width="100px" style="border-radius:100%"/>
           <br /><sub><b>luisferreira32</b></sub><br />
         </a>
-        <a href="mailto: stickianempire@gmail.com" title="Mail">
-        <img src="https://cdn.jsdelivr.net/gh/dmhendricks/signature-social-icons/icons/round-flat-filled/50px/mail.png" width="20" style="margin-top:10px"/>
-        </a>
         <a href="https://www.linkedin.com/in/lu%C3%ADs-morgado-ferreira-90a558142/" title="LinkedIn">
         <img src="https://cdn.jsdelivr.net/gh/dmhendricks/signature-social-icons/icons/round-flat-filled/50px/linkedin.png" width="20" style="margin-top:10px"/>
         </a>
@@ -94,9 +88,6 @@ The following policies are meant to guide collaborators in their activities, est
         <a href="https://github.com/MrToino">
           <img src="https://github.com/MrToino.png" width="100px;" style="border-radius:100%"/>
           <br /><sub><b>Mr Toino</b></sub><br />
-        </a>
-        <a href="mailto: antonio.mf97@gmail.com" title="Mail">
-        <img src="https://cdn.jsdelivr.net/gh/dmhendricks/signature-social-icons/icons/round-flat-filled/50px/mail.png" width="20" style="margin-top:10px"/>
         </a>
         <a href="https://www.linkedin.com/in/ant%C3%B3nio-medeiros-fernandes/" title="LinkedIn">
         <img src="https://cdn.jsdelivr.net/gh/dmhendricks/signature-social-icons/icons/round-flat-filled/50px/linkedin.png" width="20" style="margin-top:10px"/>
