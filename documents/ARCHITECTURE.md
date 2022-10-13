@@ -19,7 +19,7 @@ Take with a hint of salt any point given as a draft with the status :page_facing
 To be able to provide fun to thousands, if millions, of (long distant future) players, a robust and future proof architecture is necessary. This first High-Level approach is to guide the developers and contributors to our final goal.
 
 ```mermaid
-flowchart HL
+flowchart LR
     subgraph frontend
         home[Login/Home screen] --- auths
         game[Game screen] --- gameb1
