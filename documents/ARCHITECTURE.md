@@ -4,6 +4,8 @@ This document holds the key architectural components that the developers of the 
 
 Take with a hint of salt any point given as a draft with the status :page_facing_up:.
 
+Work in progress... :warning: :construction_worker:
+
 ## Index
 
 1. [High-Level Architecture](#high-level-architecture)
@@ -59,10 +61,20 @@ As a developer you should also know that maintaining code readability is always 
 
 ## Back-end Architecture
 
+Work in progress... :warning: :construction_worker:
+
 ## The NoSQL Approach
+
+Work in progress... :warning: :construction_worker:
 
 ## Real(bothersome)-time problem
 
+Work in progress... :warning: :construction_worker:
+
 ## "Micro" Front-ends
 
+Work in progress... :warning: :construction_worker:
+
 ## Front-end State Management
+
+Work in progress... :warning: :construction_worker:
