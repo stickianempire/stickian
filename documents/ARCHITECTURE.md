@@ -28,20 +28,18 @@ flowchart LR
         chat[Chat view]
     end
     subgraph backend
-        subgraph microservices
-            home --- auths
-            auths[Authentication service] --- relationaldb
-            game --- gameb1
-            game --- gameb2
-            game --- gameb3
-            gameb1[Game service X] --- gamedb
-            gameb2[Game service Y] --- gamedb
-            gameb3[Game service Z] --- gamedb
-            chat --- chatb
-            chatb[Chat service] --- relationaldb
-            gamedb[(NoSQL Database)]
-            relationaldb[(Relational Database)]
-        end
+        home --- auths
+        auths[Authentication service] --- relationaldb
+        game --- gameb1
+        game --- gameb2
+        game --- gameb3
+        gameb1[Game service X] --- gamedb
+        gameb2[Game service Y] --- gamedb
+        gameb3[Game service Z] --- gamedb
+        chat --- chatb
+        chatb[Chat service] --- relationaldb
+        gamedb[(NoSQL Database)]
+        relationaldb[(Relational Database)]
     end
 ```
 
