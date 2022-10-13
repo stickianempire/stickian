@@ -39,14 +39,7 @@ flowchart LR
             gameb3[Game service Z] --- gamedb
             chat --- chatb
             chatb[Chat service] --- relationaldb
-        end
-        subgraph storage
-            gameb1 --- gamedb
-            gameb2 --- gamedb
-            gameb3 --- gamedb
             gamedb[(NoSQL Database)]
-            chatb --- relationaldb
-            auths --- relationaldb
             relationaldb[(Relational Database)]
         end
     end
