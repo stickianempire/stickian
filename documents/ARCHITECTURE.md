@@ -21,18 +21,23 @@ To be able to provide fun to thousands, if millions, of (long distant future) pl
 ```mermaid
 flowchart LR
     subgraph frontend
-        home[Login/Home screen] --- auths
-        game[Game screen] --- gameb1
-        game[Game screen] --- gameb2
-        game[Game screen] --- gameb3
-        chat[Chat view] --- chatb
+        home[Login/Home screen]
+        game[Game screen]
+        game[Game screen]
+        game[Game screen]
+        chat[Chat view]
     end
     subgraph backend
         subgraph microservices
+            home --- auths
             auths[Authentication service] --- relationaldb
+            game --- gameb1
+            game --- gameb2
+            game --- gameb3
             gameb1[Game service X] --- gamedb
             gameb2[Game service Y] --- gamedb
             gameb3[Game service Z] --- gamedb
+            chat --- chatb
             chatb[Chat service] --- relationaldb
         end
         subgraph storage
