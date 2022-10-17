@@ -20,4 +20,6 @@
 
 Years passed since the Great War of the Rubberhand, where the rubberian people were defeated after thousands of years of ruling. Victory emerged when all the realms of the now called Rubberfree land stood together against the power of the Rubber King, the last of his name. The stickian citizens could now live in peace, focused on the people’s prosperity, economic, social and technological growth. People were happy. Well… not exactly all were…
 
-The king Madstick, the Third, despite having the smallest army of all the realms, was decorated as the most brilliant and strongest general among all the stickian people. He fought impeccably well and his soldiers w
+The king Madstick, the Third, despite having the smallest army of all the realms, was decorated as the most brilliant and strongest general among all the stickian people. He fought impeccably well and his soldiers 
+
+Work in progress... :warning: :construction_worker:
