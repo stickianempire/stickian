@@ -6,8 +6,8 @@ Under construction :warning:
 
 To actually run something on your machine you will need to have installed:
 
-- Node 16
-- Golang 19
+- [Node 16](https://nodejs.org/en/)
+- [Golang 19](https://go.dev/)
 
 Then, to keep the code up to the standards enforced, there are also tools for each of the areas:
 
@@ -17,7 +17,7 @@ Then, to keep the code up to the standards enforced, there are also tools for ea
 
 **Back-end**:
 
-[golangci-lint](https://github.com/golangci/golangci-lint) creates a good combination to plugin in a couple of linters that we enforce, such as:
+[golangci-lint](https://github.com/golangci/golangci-lint) creates a good combination to plug-in in a couple of linters that we enforce, such as:
 
 - [revive](https://github.com/mgechev/revive)
 - [goimports](https://pkg.go.dev/golang.org/x/tools/cmd/goimports)
