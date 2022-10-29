@@ -1,0 +1,22 @@
+name: application-checker
+on:
+  pull_request:
+    paths:
+      - "application/**"
+jobs:
+  review-application-standards:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Install dependencies
+        working-directory: ./application
+        run: npm ci
+      - name: Lint files
+        working-directory: ./application
+        run: npm run lint
+      #- name: Unit test coverage
+      #  working-directory: ./application
+      #  run: npm run test
