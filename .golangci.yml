@@ -1,0 +1,56 @@
+run:
+  concurrency: 4
+  timeout: 1m
+
+linters-settings:
+  revive:
+    ignore-generated-header: false
+    severity: warning
+    rules:
+      - name: atomic
+      - name: bare-return
+      - name: blank-imports
+      - name: context-as-argument
+      - name: dot-imports
+      - name: early-return
+      - name: empty-lines
+      - name: error-return
+      - name: error-strings
+      - name: errorf
+      - name: exported
+      - name: indent-error-flow
+      - name: redefines-builtin-id
+      - name: unexported-return
+      - name: unreachable-code
+      - name: unused-parameter
+  goimports:
+    local-prefixes: github.com/stickianempire/stickian
+  misspell:
+    locale: US
+  gocritic:
+    enabled-tags:
+      - performance
+      - style
+      - experimental
+    disabled-checks:
+      - wrapperFunc
+      - dupImport
+linters:
+  enable:
+    - errcheck
+    - gosimple
+    - govet
+    - ineffassign
+    - staticcheck
+    - typecheck
+    - unused
+    - errorlint
+    - gocritic
+    - gofmt
+    - goimports
+    - gosec
+    - misspell
+    - revive
+    - unparam
+issues:
+  exclude-user-default: false
