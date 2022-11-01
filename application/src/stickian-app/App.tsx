@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
 import RoundButton from 'components/buttons/RoundButton';
-import TitleCard from 'stickian-app/TitleCard';
-import InfoCard from 'stickian-app/InfoCard';
+import TitleCard from 'components/cards/TitleCard';
+import InfoCard from 'components/cards/InfoCard';
 
 import './App.scss';
 

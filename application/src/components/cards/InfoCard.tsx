@@ -7,11 +7,7 @@ type InfoCardProps = {
 };
 
 const InfoCard: React.FC<InfoCardProps> = ({ children }) => {
-  return (
-    <div className='InfoCard'>
-      <p>{children}</p>
-    </div>
-  );
+  return <div className='InfoCard'>{children}</div>;
 };
 
 export default InfoCard;
