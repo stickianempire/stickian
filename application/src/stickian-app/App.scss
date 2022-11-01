@@ -1,0 +1,29 @@
+.App {
+  text-align: center;
+  display: block;
+}
+
+.LeftPad {
+  float: left;
+  width: 20vw;
+  height: 90vh;
+  border: 1px dotted red;
+}
+
+.RightPad {
+  float: right;
+  width: 20vw;
+  height: 90vh;
+  border: 1px dotted red;
+}
+
+.MainView {
+  height: 90vh;
+  border: 1px dotted blue;
+  overflow: hidden;
+}
+
+.Footer {
+  border: 1px dotted green;
+  height: 7vh;
+}
