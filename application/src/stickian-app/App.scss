@@ -1,29 +1,59 @@
 .App {
   text-align: center;
   display: block;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  position: absolute;
 }
 
 .LeftPad {
-  float: left;
-  width: 20vw;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 384px;
   height: 90vh;
   border: 1px dotted red;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .RightPad {
-  float: right;
-  width: 20vw;
+  position: absolute;
+  left: calc(60vw + 384px);
+  top: 0;
+  width: 10vw;
+  min-width: 384px;
   height: 90vh;
   border: 1px dotted red;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .MainView {
+  position: absolute;
+  left: 384px;
+  top: 0;
   height: 90vh;
+  width: 60vw;
   border: 1px dotted blue;
-  overflow: hidden;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .Footer {
+  position: absolute;
+  left: 0px;
+  top: 90vh;
   border: 1px dotted green;
-  height: 7vh;
+  height: 10vh;
+  min-height: 80px;
+  width: 100vw;
+  min-width: 500px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
