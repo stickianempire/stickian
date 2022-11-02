@@ -5,11 +5,12 @@ import './RoundButton.scss';
 type RoundButtonProps = {
   onClick: React.MouseEventHandler<HTMLButtonElement>;
   children: string;
+  id: string;
 };
 
-const RoundButton: React.FC<RoundButtonProps> = ({ onClick, children }) => {
+const RoundButton: React.FC<RoundButtonProps> = ({ onClick, children, id }) => {
   return (
-    <button className='RoundButton' onClick={onClick}>
+    <button className='RoundButton' onClick={onClick} id = {id}>
       {children}
     </button>
   );
