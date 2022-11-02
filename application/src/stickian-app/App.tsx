@@ -8,14 +8,14 @@ import City from 'components/city/City';
 
 import './App.scss';
 
-function Show(id: string) {
+function Show(id:string) {
   const x = document.getElementById(id);
   if (x!.style.display === "none") {
     x!.style.display = "block";
   }
 }
 
-function Hide(id: string) {
+function Hide(id:string) {
   const x = document.getElementById(id);
   if (x!.style.display === "block") {
     x!.style.display = "none";
