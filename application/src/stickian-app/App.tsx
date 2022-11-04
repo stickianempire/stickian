@@ -10,22 +10,28 @@ import './App.scss';
 
 function Show(id:string) {
   const x = document.getElementById(id);
-  if (x!.style.display === "none") {
-    x!.style.display = "block";
+  if(x != null){
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    }
   }
 }
 
 function Hide(id:string) {
   const x = document.getElementById(id);
-  if (x!.style.display === "block") {
-    x!.style.display = "none";
+  if(x != null){
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    }
   }
 }
 
 const App: React.FC<unknown> = () => {
-  const [curretViewTitle, setCurrentViewTitle] = useState('City View');
+  const [currentViewTitle, setCurrentViewTitle] = useState('City View');
+  const [currentShow, setCurrentShow] = useState("display:none;");
 
   return (
+
     <div className='App'>
       <div className='LeftPad'>
         <p id='test'>This stuff is on the left</p>
@@ -48,9 +54,9 @@ const App: React.FC<unknown> = () => {
         </InfoCard>
       </div>
       <div className='MainView'>
-        <TitleCard>{curretViewTitle}</TitleCard>
+        <TitleCard>{currentViewTitle}</TitleCard>
         <p id='test'>Test test, one two three...?</p>
-        <City id='city'>City</City>
+        <div id = 'city' style = {{display: 'block'}}><City>City</City></div>
       </div>
       <div className='Footer'>
         <RoundButton id = 'button1' onClick={() => {setCurrentViewTitle('City View'); Show('city')}}>City</RoundButton>

@@ -4,12 +4,11 @@ import './City.scss';
 
 type CityProps = {
   children: string;
-  id: string;
 };
 
-const City: React.FC<CityProps> = ({children, id}) => {
+const City: React.FC<CityProps> = ({children}) => {
   return (
-    <button className='City' id = {id}>
+    <button className='City'>
       {children}
     </button>
   );
