@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import RoundButton from 'components/buttons/RoundButton';
 import TitleCard from 'components/cards/TitleCard';
@@ -16,7 +16,17 @@ const enum viewID {
 }
 
 const App: React.FC<unknown> = () => {
-  const [curretView, setCurrentView] = useState(viewID.City);
+  const [currentView, setCurrentView] = useState(viewID.City);
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setCount((count) => count + 1);
+    }, 1000);
+    return () => {
+      window.clearInterval(timer);
+    };
+  }, []);
 
   const _displaySelectedView = (selected: viewID) => {
     switch (selected) {
@@ -59,9 +69,9 @@ const App: React.FC<unknown> = () => {
         </InfoCard>
       </div>
       <div className='RightPad'>
-        <p id='test'>This stuff is on the right</p>
+        <p id='test'>This stuff is on the right {count}</p>
       </div>
-      {_displaySelectedView(curretView)}
+      {_displaySelectedView(currentView)}
       <div className='Footer'>
         <RoundButton onClick={() => setCurrentView(viewID.City)}>City</RoundButton>
         <RoundButton onClick={() => setCurrentView(viewID.Map)}>Map</RoundButton>
