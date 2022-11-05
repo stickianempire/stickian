@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import RoundButton from 'components/buttons/RoundButton';
-import TitleCard from 'components/cards/TitleCard';
 import InfoCard from 'components/cards/InfoCard';
 import CityView from 'components/views/CityView';
 import MapView from 'components/views/MapView';
@@ -17,40 +16,15 @@ const enum viewID {
 
 const App: React.FC<unknown> = () => {
   const [currentView, setCurrentView] = useState(viewID.City);
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    const timer = window.setInterval(() => {
-      setCount((count) => count + 1);
-    }, 1000);
-    return () => {
-      window.clearInterval(timer);
-    };
-  }, []);
 
   const _displaySelectedView = (selected: viewID) => {
     switch (selected) {
       case viewID.City:
-        return (
-          <div className='MainView'>
-            <TitleCard>City View</TitleCard>
-            <CityView />
-          </div>
-        );
+        return <CityView />;
       case viewID.Map:
-        return (
-          <div className='MainView'>
-            <TitleCard>Map View</TitleCard>
-            <MapView />
-          </div>
-        );
+        return <MapView />;
       case viewID.Social:
-        return (
-          <div className='MainView'>
-            <TitleCard>Social</TitleCard>
-            <SocialView />
-          </div>
-        );
+        return <SocialView />;
     }
   };
 
@@ -69,9 +43,9 @@ const App: React.FC<unknown> = () => {
         </InfoCard>
       </div>
       <div className='RightPad'>
-        <p id='test'>This stuff is on the right {count}</p>
+        <p id='test'>This stuff is on the right</p>
       </div>
-      {_displaySelectedView(currentView)}
+      <div className='MainView'>{_displaySelectedView(currentView)}</div>
       <div className='Footer'>
         <RoundButton onClick={() => setCurrentView(viewID.City)}>City</RoundButton>
         <RoundButton onClick={() => setCurrentView(viewID.Map)}>Map</RoundButton>

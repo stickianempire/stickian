@@ -1,9 +1,15 @@
 import React from 'react';
 
+import TitleCard from 'components/cards/TitleCard';
+
 type SocialViewProps = unknown;
 
 const SocialView: React.FC<SocialViewProps> = () => {
-  return <p></p>;
+  return (
+    <div>
+      <TitleCard>Social</TitleCard>
+    </div>
+  );
 };
 
 export default SocialView;
