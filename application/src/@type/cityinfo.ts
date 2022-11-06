@@ -1,7 +1,7 @@
 type buildingInfo = {
   name: string;
   level: number;
-  built: boolean;
+  available: boolean;
   // etc.
 };
 
@@ -9,6 +9,7 @@ type cityInfo = {
   cityHall: buildingInfo;
   barracks: buildingInfo;
   forge: buildingInfo;
+  wall: buildingInfo; 
   // etc.
 };
 
