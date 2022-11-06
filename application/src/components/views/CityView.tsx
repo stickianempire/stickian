@@ -3,9 +3,9 @@ import React, { useState, useEffect } from 'react';
 import { cityInfo, buildingInfo } from '@type/cityinfo';
 
 import TitleCard from 'components/cards/TitleCard';
+import Building from 'components/buildings/Building';
 
 import './CityView.scss';
-import Building from 'components/buildings/Building';
 
 type CityViewProps = unknown;
 
@@ -23,17 +23,22 @@ const CityView: React.FC<CityViewProps> = () => {
     setCurrentCityInfo({
       cityHall: { name: 'City Hall', level: 5, available: true },
       barracks: { name: 'Barracks', level: 2, available: true },
-      forge: { name: 'Forge', level: 0, available: false},
-      wall: { name: 'Wall', level: 0, available: false},
+      forge: { name: 'Forge', level: 0, available: false },
+      wall: { name: 'Wall', level: 0, available: false },
     });
   }, []);
 
-  const _renderBuildingIfavailable = (currentBuildingInfo: buildingInfo, buildingId:string) => {
+  const _renderBuildingIfavailable = (currentBuildingInfo: buildingInfo, buildingImg: string) => {
     if (currentBuildingInfo.available) {
       return (
-        <div id = {buildingId}>
-          <Building onClick={() => {return;}} name = {currentBuildingInfo.name} level = {currentBuildingInfo.level}></Building>
-        </div>
+        <Building
+          onClick={() => {
+            return;
+          }}
+          name={currentBuildingInfo.name}
+          level={currentBuildingInfo.level}
+          img={buildingImg}
+        ></Building>
       );
     }
     return;
@@ -42,9 +47,9 @@ const CityView: React.FC<CityViewProps> = () => {
   return (
     <div>
       <TitleCard>City view</TitleCard>
-      {_renderBuildingIfavailable(currentCityInfo.cityHall, 'City-Hall')}
-      {_renderBuildingIfavailable(currentCityInfo.barracks, 'Barracks')}
-      {_renderBuildingIfavailable(currentCityInfo.forge, 'Forge')}
+      {_renderBuildingIfavailable(currentCityInfo.cityHall, '/images/city.png')}
+      {_renderBuildingIfavailable(currentCityInfo.barracks, '/images/city.png')}
+      {_renderBuildingIfavailable(currentCityInfo.forge, '/images/city.png')}
     </div>
   );
 };

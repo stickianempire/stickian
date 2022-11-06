@@ -1,0 +1,16 @@
+.Building {
+    height: 100px;
+    width: 100px;
+    margin: 20px;
+}
+
+div .Cropper{
+    height: 80px;
+    width: 100px;
+    overflow: hidden;
+}
+
+img .Cropped{
+    min-height: 100%;
+    min-width: 100%;
+}

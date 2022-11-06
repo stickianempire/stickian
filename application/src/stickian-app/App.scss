@@ -1,9 +1,6 @@
 .App {
   text-align: center;
   display: block;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
   position: absolute;
 }
 
@@ -14,9 +11,6 @@
   width: 384px;
   height: 90vh;
   border: 1px dotted red;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
 }
 
 .RightPad {
@@ -27,9 +21,6 @@
   min-width: 384px;
   height: 90vh;
   border: 1px dotted red;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
 }
 
 .MainView {
@@ -39,9 +30,6 @@
   height: 90vh;
   width: 60vw;
   border: 1px dotted blue;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
 }
 
 .Footer {
@@ -53,7 +41,4 @@
   min-height: 80px;
   width: 100vw;
   min-width: 500px;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
 }

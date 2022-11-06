@@ -1,5 +1,11 @@
 @import '@styles/colors';
 
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 body {
   background-color: $light-background-color;
   color: $light-text-color;

@@ -9,7 +9,7 @@ type cityInfo = {
   cityHall: buildingInfo;
   barracks: buildingInfo;
   forge: buildingInfo;
-  wall: buildingInfo; 
+  wall: buildingInfo;
   // etc.
 };
 
