@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { cityInfo, buildingInfo } from '@type/cityinfo';
 
 import TitleCard from 'components/cards/TitleCard';
-import Building from 'components/buildings/Building';
+import Building from 'components/buildings/BaseBuilding';
 
 import './CityView.scss';
 
@@ -12,32 +12,41 @@ type CityViewProps = unknown;
 const CityView: React.FC<CityViewProps> = () => {
   // TODO set current city should depend on callbacks from API
   const [currentCityInfo, setCurrentCityInfo] = useState<cityInfo>({
-    cityHall: { name: 'City Hall', level: 0, available: false },
-    barracks: { name: 'Barracks', level: 0, available: false },
-    forge: { name: 'Forge', level: 0, available: false },
-    wall: { name: 'Wall', level: 0, available: false },
+    cityHall: { level: 0, available: false },
+    barracks: { level: 0, available: false },
+    forge: { level: 0, available: false },
+    wall: { level: 0, available: false },
   });
 
   useEffect(() => {
     // This would be an API call when mounting component
     setCurrentCityInfo({
-      cityHall: { name: 'City Hall', level: 5, available: true },
-      barracks: { name: 'Barracks', level: 2, available: true },
-      forge: { name: 'Forge', level: 0, available: false },
-      wall: { name: 'Wall', level: 0, available: false },
+      cityHall: { level: 5, available: true },
+      barracks: { level: 2, available: true },
+      forge: { level: 0, available: false },
+      wall: { level: 0, available: false },
     });
   }, []);
 
-  const _renderBuildingIfavailable = (currentBuildingInfo: buildingInfo, buildingImg: string) => {
+  const _renderBaseBuildingIfAvailable = (
+    name: string,
+    currentBuildingInfo: buildingInfo,
+    buildingImg: string,
+    top: number,
+    left: number,
+  ) => {
     if (currentBuildingInfo.available) {
       return (
         <Building
           onClick={() => {
+            console.log('you clicked ' + name);
             return;
           }}
-          name={currentBuildingInfo.name}
+          name={name}
           level={currentBuildingInfo.level}
           img={buildingImg}
+          top={top}
+          left={left}
         ></Building>
       );
     }
@@ -47,9 +56,27 @@ const CityView: React.FC<CityViewProps> = () => {
   return (
     <div>
       <TitleCard>City view</TitleCard>
-      {_renderBuildingIfavailable(currentCityInfo.cityHall, '/images/city.png')}
-      {_renderBuildingIfavailable(currentCityInfo.barracks, '/images/city.png')}
-      {_renderBuildingIfavailable(currentCityInfo.forge, '/images/city.png')}
+      {_renderBaseBuildingIfAvailable(
+        'City Hall',
+        currentCityInfo.cityHall,
+        '/images/city.png',
+        0,
+        0,
+      )}
+      {_renderBaseBuildingIfAvailable(
+        'Barracks',
+        currentCityInfo.barracks,
+        '/images/city.png',
+        -40,
+        0,
+      )}
+      {_renderBaseBuildingIfAvailable(
+        'The Forge',
+        currentCityInfo.forge,
+        '/images/city.png',
+        100,
+        200,
+      )}
     </div>
   );
 };

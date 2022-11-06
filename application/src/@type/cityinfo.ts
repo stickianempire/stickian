@@ -1,5 +1,4 @@
 type buildingInfo = {
-  name: string;
   level: number;
   available: boolean;
   // etc.
