@@ -31,10 +31,6 @@ type mockDB struct {
 	dbmock map[string][]user
 }
 
-type serverHandler struct {
-	db dbClient
-}
-
 func (m *mockDB) getUserList() map[string][]user {
 	m.dbmock = map[string][]user{
 		"Users": {
@@ -134,19 +130,24 @@ func (m *mockDB) getCity(username string, cityid int) city {
 	return city_aux
 }
 
-func (m *mockDB) getBuilding(username string, cityid int, buildingid int) building {
+func (m *mockDB) getBuilding(username string, cityid int, buildingid int) (building, error) {
 	Data := m.dbmock
 	var building_aux building
 
 	for i := 0; i < len(Data["Users"]); i++ {
+		if Data["Users"][i].Username != username {
+			continue
+		}
 		for j := 0; j < len(Data["Users"][i].City); j++ {
+			if cityid != Data["Users"][i].City[j].CityID {
+				continue
+			}
 			for k := 0; k < len(Data["Users"][i].City[j].Buildings); k++ {
-				if (username == Data["Users"][i].Username) && (cityid == Data["Users"][i].City[j].CityID) &&
-					(buildingid == Data["Users"][i].City[j].Buildings[k].BuildingID) {
-					building_aux = Data["Users"][i].City[j].Buildings[k]
+				if buildingid == Data["Users"][i].City[j].Buildings[k].BuildingID {
+					return Data["Users"][i].City[j].Buildings[k], nil
 				}
 			}
 		}
 	}
-	return building_aux
+	return building_aux, ErrNotFound
 }
