@@ -23,21 +23,27 @@ func main() {
 
 	// We're showing that we can connect to MongoDB
 	func() {
+		if true {
+			return // but not really
+		}
 		client, ctx, cancel, err := connect(ctx, "mongodb://localhost:27017")
 		if err != nil {
 			log.Panicf("could not connect %v", err)
 		}
 		defer close(client, ctx, cancel)
 
-		ping(client, ctx)
+		ping(ctx, client)
 	}()
 
 	http.HandleFunc("/", server.handleRequest)
 
-	err := http.ListenAndServe(":4000", nil)
-	if errors.Is(err, http.ErrServerClosed) {
-		log.Printf("server closed")
-	} else if err != nil {
-		log.Printf("error starting server: %v", err)
-	}
+	go func() {
+		err := http.ListenAndServe(":4000", nil)
+		if errors.Is(err, http.ErrServerClosed) {
+			log.Printf("server closed")
+		} else if err != nil {
+			log.Printf("error starting server: %v", err)
+		}
+	}()
+	<-ctx.Done()
 }

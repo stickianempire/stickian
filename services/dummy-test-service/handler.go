@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"io"
 	"net/http"
 	"strconv"
 	"strings"
@@ -61,21 +60,6 @@ func (s *serverHandler) handleRequest(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusCreated)
 	w.Header().Set("Content-Type", "application/json")
 	w.Write(body)
-
-	/* switch {
-	case len(url) <= 2:
-		s.handleRoot(w, r)
-	case len(url) == 3:
-		s.handleUserList(w, r)
-	case len(url) == 4:
-		s.handleUser(w, r)
-	case len(url) == 5:
-		s.handleCity(w, r)
-	case len(url) == 6:
-		s.handleBuilding(w, r)
-	default:
-		io.WriteString(w, "Looks like you are trying to access an inexistent endpoint.\n")
-	} */
 }
 
 func handleUserList(db dbClient) ([]byte, error) {
@@ -89,7 +73,7 @@ func handleUser(db dbClient, segments []string) ([]byte, error) {
 func handleCity(db dbClient, segments []string) ([]byte, error) {
 	cityID, err := strconv.Atoi(segments[3])
 	if err != nil {
-		return nil, fmt.Errorf("atoi %v got %w", err)
+		return nil, fmt.Errorf("atoi %v got %w", segments[3], err)
 	}
 	return json.Marshal(db.getCity(segments[2], cityID))
 }
@@ -97,11 +81,11 @@ func handleCity(db dbClient, segments []string) ([]byte, error) {
 func handleBuilding(db dbClient, segments []string) ([]byte, error) {
 	cityID, err := strconv.Atoi(segments[3])
 	if err != nil {
-		return nil, fmt.Errorf("atoi city ID %v got %w", err)
+		return nil, fmt.Errorf("atoi city ID %v got %w", segments[3], err)
 	}
-	buildingID, err := strconv.Atoi(segments[3])
+	buildingID, err := strconv.Atoi(segments[4])
 	if err != nil {
-		return nil, fmt.Errorf("atoi building ID %v got %w", err)
+		return nil, fmt.Errorf("atoi building ID %v got %w", segments[4], err)
 	}
 	b, err := db.getBuilding(segments[2], cityID, buildingID)
 	if err != nil {
@@ -112,11 +96,12 @@ func handleBuilding(db dbClient, segments []string) ([]byte, error) {
 
 func reqValidation(segments []string) error {
 	if len(segments) < 2 {
-		return fmt.Errorf("%w: excpected at least 2 elements in path", ErrBadRequest)
+		return fmt.Errorf("%w: excpected at least 2 elements in path: %v", ErrBadRequest, segments)
 	}
 
 	for i, segment := range segments {
 		switch i {
+		case 0:
 		case 1:
 			if segment != "users" {
 				return ErrBadRequest
@@ -127,24 +112,18 @@ func reqValidation(segments []string) error {
 			// we expect numbers here
 			_, err := strconv.Atoi(segment)
 			if err != nil {
-				return fmt.Errorf("%w: expecting a number here")
+				return fmt.Errorf("%w: expecting a number here: %v", ErrBadRequest, segment)
 			}
 		default:
-			return fmt.Errorf("%w: too many elements in path", ErrBadRequest)
+			return fmt.Errorf("%w: too many elements in path: %v", ErrBadRequest, segments)
 		}
 	}
 	return nil
 }
 
 func (s *serverHandler) init_db() mockDB {
-
 	var database mockDB
 	database.dbmock = s.db.getUserList()
 
 	return database
-}
-
-func (s *serverHandler) handleRoot(w http.ResponseWriter, r *http.Request) {
-
-	io.WriteString(w, "Welcome to Stickian!\n")
 }

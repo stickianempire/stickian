@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"log"
 	"time"
 
 	"go.mongodb.org/mongo-driver/mongo"
@@ -18,6 +19,7 @@ func close(client *mongo.Client, ctx context.Context, cancel context.CancelFunc)
 			panic(err)
 		}
 	}()
+	log.Printf("this should not be here for now")
 }
 
 func connect(ctx context.Context, uri string) (*mongo.Client, context.Context, context.CancelFunc, error) {
@@ -27,7 +29,7 @@ func connect(ctx context.Context, uri string) (*mongo.Client, context.Context, c
 	return client, ctx, cancel, err
 }
 
-func ping(client *mongo.Client, reqCtx context.Context) error {
+func ping(reqCtx context.Context, client *mongo.Client) error {
 	if err := client.Ping(reqCtx, readpref.Primary()); err != nil {
 		return err
 	}
