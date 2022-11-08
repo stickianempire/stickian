@@ -21,11 +21,12 @@ type building struct {
 }
 
 type dbClient interface {
-	getDB() map[string][]user
+	getUserList() map[string][]user
 	getUser(username string) user
 	getCity(username string, cityid int) city
 	getBuilding(username string, cityid int, buildingid int) building
 }
+
 type mockDB struct {
 	dbmock map[string][]user
 }
@@ -34,7 +35,7 @@ type serverHandler struct {
 	db dbClient
 }
 
-func (m *mockDB) getDB() map[string][]user {
+func (m *mockDB) getUserList() map[string][]user {
 	m.dbmock = map[string][]user{
 		"Users": {
 			{
@@ -111,7 +112,6 @@ func (m *mockDB) getUser(username string) user {
 	var user_aux user
 
 	for i := 0; i < len(Data["Users"]); i++ {
-		//fmt.Printf("%v", Data["Users"][i])
 		if username == Data["Users"][i].Username {
 			user_aux = Data["Users"][i]
 		}
