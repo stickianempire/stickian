@@ -24,7 +24,7 @@ type dbClient interface {
 	getUserList() map[string][]user
 	getUser(username string) user
 	getCity(username string, cityid int) city
-	getBuilding(username string, cityid int, buildingid int) building
+	getBuilding(username string, cityid int, buildingid int) (building, error)
 }
 
 type mockDB struct {

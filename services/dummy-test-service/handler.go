@@ -5,13 +5,15 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"log"
 	"net/http"
 	"strconv"
 	"strings"
 )
 
-var ErrNotFound = fmt.Errorf("not found")
+var (
+	ErrBadRequest = fmt.Errorf("invalid request")
+	ErrNotFound   = fmt.Errorf("not found")
+)
 
 type serverHandler struct {
 	db dbClient
@@ -20,21 +22,29 @@ type serverHandler struct {
 func (s *serverHandler) handleRequest(w http.ResponseWriter, r *http.Request) {
 	segments := strings.Split(r.URL.Path, "/")
 
-	// url validate
+	err := reqValidation(segments)
+	if err != nil {
+		switch {
+		case errors.Is(err, ErrBadRequest):
+			w.WriteHeader(http.StatusBadRequest)
+			w.Write([]byte(err.Error()))
+		default:
+			w.WriteHeader(http.StatusInternalServerError)
+			w.Write([]byte("something went wrong..."))
+		}
+		return
+	}
 
 	var body []byte
-	var err error
 	switch len(segments) {
 	case 2:
 		body, err = handleUserList(s.db)
 	case 3:
 		body, err = handleUser(s.db, segments)
 	case 4:
-		body, err = handleUserList(s.db)
+		body, err = handleCity(s.db, segments)
 	case 5:
-		body, err = handleUserList(s.db)
-	case 6:
-
+		body, err = handleBuilding(s.db, segments)
 	}
 
 	if err != nil {
@@ -76,156 +86,54 @@ func handleUser(db dbClient, segments []string) ([]byte, error) {
 	return json.Marshal(db.getUser(segments[2]))
 }
 
-func (s *serverHandler) handleCity(w http.ResponseWriter, r *http.Request) {
-
-	w.WriteHeader(http.StatusCreated)
-	w.Header().Set("Content-Type", "application/json")
-
-	path := r.URL.Path
-	url := strings.Split(path, "/")
-
-	mapdb := s.db.getUserList()
-
-	flag := URLValidation(url, mapdb, w)
-
-	if flag == 1 {
-		url3, err1 := strconv.Atoi(url[3])
-		if err1 != nil {
-			log.Fatalf("Error happened in Atoi Err: %s", err1)
-		}
-
-		jsonResp, err := json.Marshal(s.db.getCity(url[2], url3))
-		if err != nil {
-			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
-		}
-		w.Write(jsonResp)
-	} else {
-		io.WriteString(w, "Looks like you are trying to access an inexistent endpoint.\n")
+func handleCity(db dbClient, segments []string) ([]byte, error) {
+	cityID, err := strconv.Atoi(segments[3])
+	if err != nil {
+		return nil, fmt.Errorf("atoi %v got %w", err)
 	}
+	return json.Marshal(db.getCity(segments[2], cityID))
 }
 
-func (s *serverHandler) handleBuilding(w http.ResponseWriter, r *http.Request) {
-
-	w.WriteHeader(http.StatusCreated)
-	w.Header().Set("Content-Type", "application/json")
-
-	path := r.URL.Path
-	url := strings.Split(path, "/")
-
-	mapdb := s.db.getUserList()
-
-	flag := URLValidation(url, mapdb, w)
-
-	if flag == 1 {
-		url3, err1 := strconv.Atoi(url[3])
-		if err1 != nil {
-			log.Fatalf("Error happened in Atoi Err: %s", err1)
-		}
-
-		url4, err2 := strconv.Atoi(url[4])
-		if err2 != nil {
-			log.Fatalf("Error happened in Atoi Err: %s", err2)
-		}
-
-		jsonResp, err := json.Marshal(s.db.getBuilding(url[2], url3, url4))
-		if err != nil {
-			log.Fatalf("Error happened in JSON marshal. Err: %s", err)
-		}
-		w.Write(jsonResp)
-	} else {
-		io.WriteString(w, "Looks like you are trying to access an inexistent endpoint.\n")
+func handleBuilding(db dbClient, segments []string) ([]byte, error) {
+	cityID, err := strconv.Atoi(segments[3])
+	if err != nil {
+		return nil, fmt.Errorf("atoi city ID %v got %w", err)
 	}
+	buildingID, err := strconv.Atoi(segments[3])
+	if err != nil {
+		return nil, fmt.Errorf("atoi building ID %v got %w", err)
+	}
+	b, err := db.getBuilding(segments[2], cityID, buildingID)
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(b)
 }
 
-func URLValidation(url []string, mapdb map[string][]user, w http.ResponseWriter) int {
-
-	flag := 0
-
-	users := url[1]
-
-	switch {
-	case len(url) == 4:
-		{
-			if users != "users" {
-				io.WriteString(w, "Looks like you are trying to access an inexistent endpoint.\n")
-			} else {
-
-				for i := 0; i < len(mapdb["Users"]); i++ {
-					if url[2] == mapdb["Users"][i].Username {
-						flag = 1
-						break
-					}
-				}
-			}
-		}
-	case len(url) == 5:
-		{
-			if users != "users" {
-				io.WriteString(w, "Looks like you are trying to access an inexistent endpoint.\n")
-				log.Fatalf("Error! Trying to access an inexistent endpoint.\n")
-			} else {
-				url3, err1 := strconv.Atoi(url[3])
-				if err1 != nil {
-					log.Fatalf("Error happened in Atoi Err: %s", err1)
-				}
-
-				for i := 0; i < len(mapdb["Users"]); i++ {
-					if url[2] == mapdb["Users"][i].Username {
-						for j := 0; j < len(mapdb["Users"][i].City); j++ {
-							if url3 == mapdb["Users"][i].City[j].CityID {
-								flag = 1
-								break
-							}
-						}
-					}
-					if flag == 1 {
-						break
-					}
-				}
-			}
-		}
-	case len(url) == 6:
-		{
-			if users != "users" {
-				io.WriteString(w, "Looks like you are trying to access an inexistent endpoint.\n")
-				log.Fatalf("Error! Trying to access an inexistent endpoint.\n")
-			} else {
-				url3, err1 := strconv.Atoi(url[3])
-				if err1 != nil {
-					log.Fatalf("Error happened in Atoi Err: %s", err1)
-				}
-
-				url4, err2 := strconv.Atoi(url[4])
-				if err2 != nil {
-					log.Fatalf("Error happened in Atoi Err: %s", err2)
-				}
-
-				for i := 0; i < len(mapdb["Users"]); i++ {
-					if url[2] == mapdb["Users"][i].Username {
-						for j := 0; j < len(mapdb["Users"][i].City); j++ {
-							if url3 == mapdb["Users"][i].City[j].CityID {
-								for k := 0; k < len(mapdb["Users"][i].City[j].Buildings); k++ {
-									if url4 == mapdb["Users"][i].City[j].Buildings[k].BuildingID {
-										flag = 1
-										break
-									}
-								}
-							}
-							if flag == 1 {
-								break
-							}
-						}
-					}
-					if flag == 1 {
-						break
-					}
-				}
-			}
-		}
-	default:
-		break
+func reqValidation(segments []string) error {
+	if len(segments) < 2 {
+		return fmt.Errorf("%w: excpected at least 2 elements in path", ErrBadRequest)
 	}
-	return flag
+
+	for i, segment := range segments {
+		switch i {
+		case 1:
+			if segment != "users" {
+				return ErrBadRequest
+			}
+		case 2:
+			// we expect a string, and it's a URL encoded string, so we're safe (ish) ?
+		case 3, 4:
+			// we expect numbers here
+			_, err := strconv.Atoi(segment)
+			if err != nil {
+				return fmt.Errorf("%w: expecting a number here")
+			}
+		default:
+			return fmt.Errorf("%w: too many elements in path", ErrBadRequest)
+		}
+	}
+	return nil
 }
 
 func (s *serverHandler) init_db() mockDB {
