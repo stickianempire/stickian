@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os/signal"
 	"syscall"
+	"time"
 )
 
 func main() {
@@ -15,11 +16,11 @@ func main() {
 	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
 	defer stop()
 
-	server := serverHandler{
+	serverHandler := serverHandler{
 		db: &mockDB{},
 	}
 
-	server.init_db()
+	serverHandler.init_db()
 
 	// We're showing that we can connect to MongoDB
 	func() {
@@ -30,15 +31,22 @@ func main() {
 		if err != nil {
 			log.Panicf("could not connect %v", err)
 		}
-		defer close(client, ctx, cancel)
+		defer closeConnection(client, ctx, cancel)
 
-		ping(ctx, client)
+		err = ping(ctx, client)
+		if err != nil {
+			log.Panicf("could not ping %v", err)
+		}
 	}()
 
-	http.HandleFunc("/", server.handleRequest)
+	server := &http.Server{
+		Addr:              ":4000",
+		ReadHeaderTimeout: 3 * time.Second,
+	}
+	http.HandleFunc("/", serverHandler.handleRequest)
 
 	go func() {
-		err := http.ListenAndServe(":4000", nil)
+		err := server.ListenAndServe()
 		if errors.Is(err, http.ErrServerClosed) {
 			log.Printf("server closed")
 		} else if err != nil {

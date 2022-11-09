@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"log"
 	"net/http"
 	"strconv"
 	"strings"
@@ -26,10 +27,16 @@ func (s *serverHandler) handleRequest(w http.ResponseWriter, r *http.Request) {
 		switch {
 		case errors.Is(err, ErrBadRequest):
 			w.WriteHeader(http.StatusBadRequest)
-			w.Write([]byte(err.Error()))
+			_, err := w.Write([]byte(err.Error()))
+			if err != nil {
+				log.Printf("oops %v", err)
+			}
 		default:
 			w.WriteHeader(http.StatusInternalServerError)
-			w.Write([]byte("something went wrong..."))
+			_, err := w.Write([]byte("something went wrong..."))
+			if err != nil {
+				log.Printf("oops %v", err)
+			}
 		}
 		return
 	}
@@ -50,10 +57,16 @@ func (s *serverHandler) handleRequest(w http.ResponseWriter, r *http.Request) {
 		switch {
 		case errors.Is(err, ErrNotFound):
 			w.WriteHeader(http.StatusNotFound)
-			w.Write([]byte(err.Error()))
+			_, err := w.Write([]byte(err.Error()))
+			if err != nil {
+				log.Printf("oops %v", err)
+			}
 		default:
 			w.WriteHeader(http.StatusInternalServerError)
-			w.Write([]byte("something went wrong..."))
+			_, err := w.Write([]byte("something went wrong..."))
+			if err != nil {
+				log.Printf("oops %v", err)
+			}
 		}
 		return
 	}

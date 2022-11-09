@@ -103,7 +103,6 @@ func (m *mockDB) getUserList() map[string][]user {
 }
 
 func (m *mockDB) getUser(username string) user {
-
 	Data := m.dbmock
 	var user_aux user
 
@@ -130,7 +129,7 @@ func (m *mockDB) getCity(username string, cityid int) city {
 	return city_aux
 }
 
-func (m *mockDB) getBuilding(username string, cityid int, buildingid int) (building, error) {
+func (m *mockDB) getBuilding(username string, cityid, buildingid int) (building, error) {
 	Data := m.dbmock
 	var building_aux building
 

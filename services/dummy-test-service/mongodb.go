@@ -11,7 +11,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/readpref"
 )
 
-func close(client *mongo.Client, ctx context.Context, cancel context.CancelFunc) {
+func closeConnection(client *mongo.Client, ctx context.Context, cancel context.CancelFunc) {
 	defer cancel()
 
 	defer func() {
