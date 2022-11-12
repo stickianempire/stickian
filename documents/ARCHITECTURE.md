@@ -40,7 +40,7 @@ flowchart LR
         gameb3[Game service Z] --- gamedb
         chat --- chatb
         chatb[Chat service] --- relationaldb
-        gamedb[(NoSQL Database)]
+        gamedb[(Relational Database)]
         relationaldb[(Relational Database)]
     end
 ```
