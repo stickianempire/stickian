@@ -13,8 +13,3 @@ The technological tree is subdivided into five main categories, each associated 
 5. <ins>**Religion and Spells**</ins> [<span style="color:#8e7cc3">violet | #8e7cc3</span>]:
 
 ![TechTree](../assets/TechTree.v0.0-TechTree.png)
-
-
-# Units and Buildings
-
-https://docs.google.com/spreadsheets/d/1H_UoOrvQGwsS0GIzRcd_AlPuNHbIsHRAz4Llo7vYrSU/edit?usp=sharing

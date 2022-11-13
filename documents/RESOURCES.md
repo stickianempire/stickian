@@ -1,7 +1,5 @@
 # Resources
 
-The resources are:
-
 1. **Food**: is the resource that controls the population and troops growth.
 2. **Sticks**
 3. **Rocks**
@@ -11,3 +9,5 @@ The resources are:
 ## Secondary Measures
 
 1. **Science Points**
+
+Work in progress... :warning: :construction_worker:
