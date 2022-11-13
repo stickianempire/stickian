@@ -80,7 +80,11 @@ func handleUserList(db dbClient) ([]byte, error) {
 }
 
 func handleUser(db dbClient, segments []string) ([]byte, error) {
-	return json.Marshal(db.getUser(segments[2]))
+	u, err := db.getUser(segments[2])
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(u)
 }
 
 func handleCity(db dbClient, segments []string) ([]byte, error) {
@@ -88,7 +92,11 @@ func handleCity(db dbClient, segments []string) ([]byte, error) {
 	if err != nil {
 		return nil, fmt.Errorf("atoi %v got %w", segments[3], err)
 	}
-	return json.Marshal(db.getCity(segments[2], cityID))
+	c, err := db.getCity(segments[2], cityID)
+	if err != nil {
+		return nil, err
+	}
+	return json.Marshal(c)
 }
 
 func handleBuilding(db dbClient, segments []string) ([]byte, error) {

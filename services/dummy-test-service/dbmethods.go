@@ -22,8 +22,8 @@ type building struct {
 
 type dbClient interface {
 	getUserList() map[string][]user
-	getUser(username string) user
-	getCity(username string, cityid int) city
+	getUser(username string) (user, error)
+	getCity(username string, cityid int) (city, error)
 	getBuilding(username string, cityid int, buildingid int) (building, error)
 }
 
@@ -102,36 +102,36 @@ func (m *mockDB) getUserList() map[string][]user {
 	return m.dbmock
 }
 
-func (m *mockDB) getUser(username string) user {
+func (m *mockDB) getUser(username string) (user, error) {
 	Data := m.dbmock
-	var user_aux user
 
 	for i := 0; i < len(Data["Users"]); i++ {
 		if username == Data["Users"][i].Username {
-			user_aux = Data["Users"][i]
+			return Data["Users"][i], nil
 		}
 	}
 
-	return user_aux
+	return user{}, ErrNotFound
 }
 
-func (m *mockDB) getCity(username string, cityid int) city {
+func (m *mockDB) getCity(username string, cityid int) (city, error) {
 	Data := m.dbmock
-	var city_aux city
 
 	for i := 0; i < len(Data["Users"]); i++ {
+		if Data["Users"][i].Username != username {
+			continue
+		}
 		for j := 0; j < len(Data["Users"][i].City); j++ {
 			if (username == Data["Users"][i].Username) && (cityid == Data["Users"][i].City[j].CityID) {
-				city_aux = Data["Users"][i].City[j]
+				return Data["Users"][i].City[j], nil
 			}
 		}
 	}
-	return city_aux
+	return city{}, ErrNotFound
 }
 
 func (m *mockDB) getBuilding(username string, cityid, buildingid int) (building, error) {
 	Data := m.dbmock
-	var building_aux building
 
 	for i := 0; i < len(Data["Users"]); i++ {
 		if Data["Users"][i].Username != username {
@@ -148,5 +148,5 @@ func (m *mockDB) getBuilding(username string, cityid, buildingid int) (building,
 			}
 		}
 	}
-	return building_aux, ErrNotFound
+	return building{}, ErrNotFound
 }
