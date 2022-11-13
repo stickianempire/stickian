@@ -11,10 +11,9 @@ Work in progress... :warning: :construction_worker:
 1. [High-Level Architecture](#high-level-architecture)
 2. [Tools](#tools)
 3. [Back-end Architecture](#back-end-architecture)
-4. [The NoSQL Approach](#the-nosql-approach)
-5. [Real(bothersome)-time problem](#realbothersome-time-problem)
-6. ["Micro" Front-ends](#micro-front-ends)
-7. [Front-end state management](#front-end-state-management)
+4. [Real(bothersome)-time problem](#realbothersome-time-problem)
+5. ["Micro" Front-ends](#micro-front-ends)
+6. [Front-end state management](#front-end-state-management)
 
 ## High-Level Architecture
 
@@ -51,7 +50,6 @@ The tools for this project are stated as follows:
 
 - [Go](https://go.dev/) as one of the simplest back-end language with an enourmous power, but a compiled environment to ensure types and no runtime hiccups (yes, I'm looking at you Python 3.x :eyes:).
 - [React](https://reactjs.org/) which can be considered as good as any popular front-end framework :poop:, it is MANDATORY to use it with [Typescript](https://www.typescriptlang.org/), forget about classes and go for hooks and functional components.
-- (:page_facing_up:) [MongoDB](https://www.mongodb.com/) as the NoSQL approach.
 - (:page_facing_up:) [PostegreSQL](https://www.postgresql.org/) as a open source relational database for usage in relational data.
 
 As a developer you should also know that maintaining code readability is always a must, so ensure to have:
@@ -60,10 +58,6 @@ As a developer you should also know that maintaining code readability is always 
 - (:page_facing_up:) [Prettier](https://prettier.io/) configured for the rest
 
 ## Back-end Architecture
-
-Work in progress... :warning: :construction_worker:
-
-## The NoSQL Approach
 
 Work in progress... :warning: :construction_worker:
 
