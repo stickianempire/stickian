@@ -1,4 +1,4 @@
-# Technological Tree
+# Technology Tree
 
 The technological tree is subdivided into five main categories, each associated with a color:
 1. <ins>**Resources and Wealth**</ins> 
@@ -6,10 +6,14 @@ The technological tree is subdivided into five main categories, each associated 
 
 2. <ins>**Science and Technology**</ins> [<span style="color:#1155cc">blue | #1155cc</span>]: regards to all topics on science and its production, as well as new technology to unlock different assets
 
-3. <ins>**Military Science**</ins> [<span style="color:#cc0000">red | #cc0000</span>]: regards to all topics on military training, development
+3. <ins>**Military Science**</ins> [<span style="color:#cc0000">red | #cc0000</span>]: regards to all topics on military training, development and management;
 
-4. <ins>**Social Science**</ins> [<span style="color:#f1c232">yellow | #f1c232</span>]:
+4. <ins>**Social Science**</ins> [<span style="color:#f1c232">yellow | #f1c232</span>]: regards to all topics on social and political development;
 
-5. <ins>**Religion and Spells**</ins> [<span style="color:#8e7cc3">violet | #8e7cc3</span>]:
+5. <ins>**Religion and Spells**</ins> [<span style="color:#8e7cc3">violet | #8e7cc3</span>]: regards to all religious topics as well as magic spells;
+
+## Technology Tree Overview
 
 ![TechTree](../assets/TechTree.v0.0-TechTree.png)
+
+Work in progress... :warning: :construction_worker:
