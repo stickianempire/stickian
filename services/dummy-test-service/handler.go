@@ -72,7 +72,10 @@ func (s *serverHandler) handleRequest(w http.ResponseWriter, r *http.Request) {
 	}
 	w.WriteHeader(http.StatusCreated)
 	w.Header().Set("Content-Type", "application/json")
-	w.Write(body)
+	_, err = w.Write(body)
+	if err != nil {
+		log.Printf("oops %v", err)
+	}
 }
 
 func handleUserList(db dbClient) ([]byte, error) {

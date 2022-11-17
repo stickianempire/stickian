@@ -22,23 +22,6 @@ func main() {
 
 	serverHandler.init_db()
 
-	// We're showing that we can connect to MongoDB
-	func() {
-		if true {
-			return // but not really
-		}
-		client, ctx, cancel, err := connect(ctx, "mongodb://localhost:27017")
-		if err != nil {
-			log.Panicf("could not connect %v", err)
-		}
-		defer closeConnection(client, ctx, cancel)
-
-		err = ping(ctx, client)
-		if err != nil {
-			log.Panicf("could not ping %v", err)
-		}
-	}()
-
 	server := &http.Server{
 		Addr:              ":4000",
 		ReadHeaderTimeout: 3 * time.Second,
