@@ -2,15 +2,15 @@
 
 The technological tree is subdivided into five main categories, each associated with a color:
 1. <ins>**Resources and Wealth**</ins> 
-[<span style="color:#009900">green | #009900</span>]: regards all topics on resources production, storage, trade and management;
+[$\color{#1155CC}\text{green | \\#009900}$]: regards all topics on resources production, storage, trade and management;
 
-2. <ins>**Science and Technology**</ins> [<span style="color:#1155cc">blue | #1155cc</span>]: regards to all topics on science and its production, as well as new technology to unlock different assets
+2. <ins>**Science and Technology**</ins> [$\color{#1155CC}\text{blue | \\#1155CC}$]: regards to all topics on science and its production, as well as new technology to unlock different assets
 
-3. <ins>**Military Science**</ins> [<span style="color:#cc0000">red | #cc0000</span>]: regards to all topics on military training, development and management;
+3. <ins>**Military Science**</ins> [$\color{#CC0000}\text{red | \\#CC0000}$]: regards to all topics on military training, development and management;
 
-4. <ins>**Social Science**</ins> [<span style="color:#f1c232">yellow | #f1c232</span>]: regards to all topics on social and political development;
+4. <ins>**Social Science**</ins> [$\color{#F1C232}\text{gold | \\#F1C232}$]: regards to all topics on social and political development;
 
-5. <ins>**Religion and Spells**</ins> [<span style="color:#8e7cc3">violet | #8e7cc3</span>]: regards to all religious topics as well as magic spells;
+5. <ins>**Religion and Spells**</ins> [$\color{#8E7CC3}\text{violet | \\#8E7CC3}$]: regards to all religious topics as well as magic spells;
 
 ## Technology Tree Overview
 
