@@ -1,6 +1,6 @@
 # Stickian Empire, The Game
 
-The Stickian Empire is a Massively Multiplayer Online (MMO) Real Time Strategy (RTS) Browser Game. Players can build their empire, join alliances and fight against others until achieve victory. 
+The Stickian Empire is a Massively Multiplayer Online (MMO) Real Time Strategy (RTS) Browser Game. Players can build their empire, join alliances and fight against others until victory is achieved. 
 
 The game is still in development (alpha version).
 
