@@ -59,6 +59,9 @@ As a developer you should also know that maintaining code readability is always 
 
 ## Back-end Architecture
 
+The game database (v0.1):
+![TechTree](../assets/GameDB.v0.1.png)
+
 Work in progress... :warning: :construction_worker:
 
 ## Real(bothersome)-time problem
