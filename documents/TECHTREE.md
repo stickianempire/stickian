@@ -1,6 +1,7 @@
 # Technology Tree
 
 The technological tree is subdivided into five main categories, each associated with a color:
+
 1. <ins>**Resources and Wealth**</ins> [green | `#009900` ![#009900](https://placehold.co/15x15/009900/009900.png)]: regards all topics on resources production, storage, trade and management;
 
 2. <ins>**Science and Technology**</ins> [blue | `#1155CC` ![#1155CC](https://placehold.co/15x15/1155CC/1155CC.png)]: regards to all topics on science and its production, as well as new technology to unlock different assets
@@ -13,6 +14,6 @@ The technological tree is subdivided into five main categories, each associated 
 
 ## Technology Tree Overview
 
-![TechTree](../assets/TechTree.v0.0-TechTree.png)
+![TechTree](../assets/TechTree.v0.1.png)
 
 Work in progress... :warning: :construction_worker:
