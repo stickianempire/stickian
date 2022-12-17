@@ -77,8 +77,6 @@ CREATE TABLE city(
     b_mutant_lab_level INT,
     b_temple_level INT,
     income_tax FLOAT,
-    fishboats_amount INT,
-    scientists_amount INT,
     update_timestamp TIMESTAMP,
 
     PRIMARY KEY(city_id)

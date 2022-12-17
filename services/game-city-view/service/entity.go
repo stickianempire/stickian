@@ -1,0 +1,112 @@
+package service
+
+import "time"
+
+type CityInfo struct {
+	CITY_ID              int32
+	PLAYER_ID            int32
+	LOCATION_ID          int32  // Location ID is will use 2 Bytes for X and 2 Bytes for Y.
+	CITY_NAME            string // 50 char max
+	R_FOOD_AMOUNT        int32
+	R_STICK_AMOUNT       int32
+	R_ROCK_AMOUNT        int32
+	R_CLAY_AMOUNT        int32
+	R_COIN_AMOUNT        int32
+	U_SWORDSMAN_AMOUNT   int32
+	U_STICKOPLITE_AMOUNT int32
+	U_PIKEMAN_AMOUNT     int32
+	U_ARCHER_AMOUNT      int32
+	U_CROSSBRO_AMOUNT    int32
+	U_SLINGER_AMOUNT     int32
+	U_CENTAUR_AMOUNT     int32
+	U_SPIDOSAUR_AMOUNT   int32
+	U_STICKOFANTS_AMOUNT int32
+	U_TREBUCHET_AMOUNT   int32
+	U_RAM_AMOUNT         int32
+	U_CULVERIN_AMOUNT    int32
+	U_CIROUSTICK_AMOUNT  int32
+	U_CARAVAN_AMOUNT     int32
+	U_COLONIZER_AMOUNT   int32
+	U_FISHBOAT_AMOUNT    int32
+	U_SCIENTIST_AMOUNT   int32
+	B_CITY_HALL_LEVEL    int32
+	B_STATUE_LEVEL       int32
+	B_BARRACKS_LEVEL     int32
+	B_WALL_LEVEL         int32
+	B_QUARRY_LEVEL       int32
+	B_LUMBERMILL_LEVEL   int32
+	B_CLAY_PIT_LEVEL     int32
+	B_FARM_LEVEL         int32
+	B_WAREHOUSE_LEVEL    int32
+	B_MARKET_LEVEL       int32
+	B_FISHING_SPOT_LEVEL int32
+	B_BANK_LEVEL         int32
+	B_EMBASSY_LEVEL      int32
+	B_LIBRARY_LEVEL      int32
+	B_RESEARCH_LAB_LEVEL int32
+	B_HOSPITAL_LEVEL     int32
+	B_HARBOR_LEVEL       int32
+	B_AIRPORT_LEVEL      int32
+	B_MUTANT_LAB_LEVEL   int32
+	B_TEMPLE_LEVEL       int32
+	INCOME_TAX           float32
+	UPDATE_TIMESTAMP     time.Time
+
+	// not part of the database but a complement for the front-end
+	LOCATION_X int16
+	LOCATION_Y int16
+}
+
+type Buildings struct {
+	B_CITY_HALL_LEVEL    int32
+	B_STATUE_LEVEL       int32
+	B_BARRACKS_LEVEL     int32
+	B_WALL_LEVEL         int32
+	B_QUARRY_LEVEL       int32
+	B_LUMBERMILL_LEVEL   int32
+	B_CLAY_PIT_LEVEL     int32
+	B_FARM_LEVEL         int32
+	B_WAREHOUSE_LEVEL    int32
+	B_MARKET_LEVEL       int32
+	B_FISHING_SPOT_LEVEL int32
+	B_BANK_LEVEL         int32
+	B_EMBASSY_LEVEL      int32
+	B_LIBRARY_LEVEL      int32
+	B_RESEARCH_LAB_LEVEL int32
+	B_HOSPITAL_LEVEL     int32
+	B_HARBOR_LEVEL       int32
+	B_AIRPORT_LEVEL      int32
+	B_MUTANT_LAB_LEVEL   int32
+	B_TEMPLE_LEVEL       int32
+	UPDATE_TIMESTAMP     time.Time
+}
+
+type Resources struct {
+	R_FOOD_AMOUNT    int32
+	R_STICK_AMOUNT   int32
+	R_ROCK_AMOUNT    int32
+	R_CLAY_AMOUNT    int32
+	R_COIN_AMOUNT    int32
+	UPDATE_TIMESTAMP time.Time
+}
+
+type Units struct {
+	U_SWORDSMAN_AMOUNT   int32
+	U_STICKOPLITE_AMOUNT int32
+	U_PIKEMAN_AMOUNT     int32
+	U_ARCHER_AMOUNT      int32
+	U_CROSSBRO_AMOUNT    int32
+	U_SLINGER_AMOUNT     int32
+	U_CENTAUR_AMOUNT     int32
+	U_SPIDOSAUR_AMOUNT   int32
+	U_STICKOFANTS_AMOUNT int32
+	U_TREBUCHET_AMOUNT   int32
+	U_RAM_AMOUNT         int32
+	U_CULVERIN_AMOUNT    int32
+	U_CIROUSTICK_AMOUNT  int32
+	U_CARAVAN_AMOUNT     int32
+	U_COLONIZER_AMOUNT   int32
+	U_FISHBOAT_AMOUNT    int32
+	U_SCIENTIST_AMOUNT   int32
+	UPDATE_TIMESTAMP     time.Time
+}
