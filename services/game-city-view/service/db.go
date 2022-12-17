@@ -17,7 +17,11 @@ type cityViewDatabaseClient interface {
 	GetUnits(context.Context, int32) (*Units, error)
 }
 
-type cityViewDatabaseClientImpl struct {
+var (
+	WrongClientInitialization = fmt.Errorf("initialize db client with function NewDatabaseClient")
+)
+
+type CityViewDatabaseClientImpl struct {
 	db *sql.DB
 }
 
@@ -25,7 +29,7 @@ func NewDatabaseClient(
 	ctx context.Context,
 	port int,
 	host, user, password string,
-) (*cityViewDatabaseClientImpl, error) {
+) (*CityViewDatabaseClientImpl, error) {
 	// TODO possibly use ssl mode and another dbname
 	psqlConn := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=postgres sslmode=disable", host, port, user, password)
 
@@ -38,17 +42,21 @@ func NewDatabaseClient(
 		return nil, err
 	}
 
-	return &cityViewDatabaseClientImpl{db: db}, nil
+	return &CityViewDatabaseClientImpl{db: db}, nil
 }
 
-func (c *cityViewDatabaseClientImpl) Close() error {
+func (c *CityViewDatabaseClientImpl) Close() error {
 	if c.db != nil {
 		return c.db.Close()
 	}
 	return nil
 }
 
-func (c *cityViewDatabaseClientImpl) GetCityInfo(ctx context.Context, cityID int32) (*CityInfo, error) {
+func (c *CityViewDatabaseClientImpl) GetCityInfo(ctx context.Context, cityID int32) (*CityInfo, error) {
+	if c.db == nil {
+		return nil, WrongClientInitialization
+	}
+
 	const query = `SELECT 
 city_id,
 player_id,
@@ -193,7 +201,11 @@ WHERE city_id=$1
 	return cityInfoResult[0], nil
 }
 
-func (c *cityViewDatabaseClientImpl) GetBuildings(ctx context.Context, cityID int32) (*Buildings, error) {
+func (c *CityViewDatabaseClientImpl) GetBuildings(ctx context.Context, cityID int32) (*Buildings, error) {
+	if c.db == nil {
+		return nil, WrongClientInitialization
+	}
+
 	const query = `SELECT 
 b_city_hall_level,
 b_statue_level,
@@ -284,7 +296,11 @@ WHERE city_id=$1
 	return buildingsResult[0], nil
 }
 
-func (c *cityViewDatabaseClientImpl) GetResources(ctx context.Context, cityID int32) (*Resources, error) {
+func (c *CityViewDatabaseClientImpl) GetResources(ctx context.Context, cityID int32) (*Resources, error) {
+	if c.db == nil {
+		return nil, WrongClientInitialization
+	}
+
 	const query = `SELECT 
 r_food_amount,
 r_stick_amount,
@@ -345,7 +361,11 @@ WHERE city_id=$1
 	return resourcesResult[0], nil
 }
 
-func (c *cityViewDatabaseClientImpl) GetUnits(ctx context.Context, cityID int32) (*Units, error) {
+func (c *CityViewDatabaseClientImpl) GetUnits(ctx context.Context, cityID int32) (*Units, error) {
+	if c.db == nil {
+		return nil, WrongClientInitialization
+	}
+
 	const query = `SELECT 
 u_swordsman_amount,
 u_stickoplite_amount,
