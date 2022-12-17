@@ -1,0 +1,63 @@
+INSERT INTO player
+VALUES
+(
+    1,
+    'dummy player',
+    'dummy',
+    0,
+    NULL,
+    NULL
+);
+
+INSERT INTO city
+VALUES
+(
+    1,
+    1,
+    1,
+    'dummy city',
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1.0,
+    current_timestamp
+);
